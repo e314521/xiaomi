@@ -5,10 +5,10 @@
 				<uni-easyinput v-model="formData.phone" placeholder="手机"></uni-easyinput>
 			</uni-forms-item>
 			<uni-forms-item label="密码">
-				<uni-easyinput v-model="formData.password" placeholder="请输入密码"></uni-easyinput>
+				<uni-easyinput type="password" v-model="formData.password" placeholder="请输入密码"></uni-easyinput>
 			</uni-forms-item>
 			<uni-forms-item label="数值">
-				<uni-easyinput v-model="formData.steps" placeholder="请输入数值"></uni-easyinput>
+				<uni-easyinput type="number"  v-model="formData.steps" placeholder="请输入数值"></uni-easyinput>
 			</uni-forms-item>
 		</uni-forms>
 		<button @click="submit">确定</button>
