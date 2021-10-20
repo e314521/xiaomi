@@ -77,8 +77,9 @@
 							uni.showModal({
 							    title: '提示',
 								showCancel:false,
-							    content: res.result,
+							    content: res.result || "空白",
 							});
+							
 						});
 
 				}).catch(err => {

@@ -1,13 +1,15 @@
 'use strict';
 exports.main = async (event, context) => {
 	try {
+		console.log(event)
 		var user = event.user
 		var password = event.password
 		var steps = parseInt(event.steps)
 		var url = "https://api-user.huami.com/registrations/+86" + user + "/tokens"
 		var headers = {
 			"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-			"User-Agent": "MiFit/4.6.0 (iPhone; iOS 14.0.1; Scale/2.00)"
+			"User-Agent": "MiFit/4.6.0 (iPhone; iOS 14.0.1; Scale/2.00)",
+			"timezone": "Asia/Shanghai"
 		}
 		var data = {
 			"client_id": "HuaMi",
@@ -19,12 +21,19 @@ exports.main = async (event, context) => {
 			method: 'POST',
 			data: data,
 		})
-		var code = res.headers.location.match(/(?<=access=).*?(?=&)/i)
+		// var wz = res.headers.location.search("&access=") + 8
+		// var code = res.headers.location.substring(wz,wz+30)
+		// code = code.substring(0,code.search("&"))
+		// console.log(res.headers.location)
+		// console.log(code)
+		
+		var code = res.headers.location.match(/access=(.*?)&/i)
+		console.log(code[1])
 		url = "https://account.huami.com/v2/client/login"
 		data = {
 			"app_name": "com.xiaomi.hm.health",
 			"app_version": "4.6.0",
-			"code": code[0],
+			"code": code[1],
 			"country_code": "CN",
 			"device_id": "2C8B4939-0CCD-4E94-8CBA-CBAAA6E613A1",
 			"device_model": "phone",
